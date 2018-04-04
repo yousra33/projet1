@@ -16,7 +16,7 @@ else
 
 fi
 #configuration de linux	
-   			PATH="$PATH:/home/"$USER"/.initdev/"
+   			PATH="$PATH:/home/"$utilisateur"/.initdev/"
 			export PATH 
 		
 		
