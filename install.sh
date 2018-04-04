@@ -15,9 +15,7 @@ else
 	exit 0;
 
 fi
-
-
-		
+#configuration de linux	
    			PATH="$PATH:/home/"$USER"/.initdev/"
 			export PATH 
 		
