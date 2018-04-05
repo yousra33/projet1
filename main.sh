@@ -35,25 +35,19 @@ then
 		    
             AUTHOR: BADJI YOUSRA  email: yousrabaji33@gmail.com"
 	    
-            fi
-	    
-
-case 1
-if [ $# -eq 0 ]
-then     echo "Expected arguments, please check the help : initdev –help".
- fi exit 1
- case 2
+           
  
 #creation de fichier sans extension
-elif  [$# -eq 1 ]] 
+
            cd ..
 	 
             mkdir  $1
 	   touch "$1"/main
 	   touch "$1"/LICENSE  
            touch "$1"/makefile
+	   fi 
  #creation de fichier une seule extension soit type licence ou type de langage
-elif 	[$# -eq 2] || [$2="GPL" ] then
+if 	[$# -eq 2] || [$2="GPL" ] then
 	        cd "$2"/             
 		#redirection du fichier vers le repertoire parent LICENCES
 		cd ../
@@ -64,8 +58,8 @@ elif 	[$# -eq 2] || [$2="GPL" ] then
 		#copier le contenu de la licence GPL
 		 cp  home/"$USER"/.initdev/LICENCE/GPL"$2"/ 
 		  mv "$2"/c"$2"/.LICENCES
-
-elif 	[$# -eq 2] || [$2="MIT"] then				 
+fi
+if 	[$# -eq 2] || [$2="MIT"] then				 
                  cd "$2"/             
 		#redirection du fichier vers le repertoire parent LICENCES
 		cd ../
@@ -81,7 +75,7 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		
 
 		
-		elif 	[$# -eq 2] || [$2= "cpp" -o $2= "c++"] then 
+		if 	[$# -eq 2] || [$2= "cpp" -o $2= "c++"] then 
              
 		cd "$2"/
 		git init                   
@@ -97,8 +91,8 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		   #copier le code minimal du langage demandé
 		   cp  home/"$USER"/.initdev/sources/main.cpp "$2"
                  mv "$2"/c"$2"/.sources
-		 
-		elif 	[$# -eq 2] || [$2= "py"] then 
+		 fi
+		if 	[$# -eq 2] || [$2= "py"] then 
 		cd "$2"/          
 		git init
 		cd ../
@@ -113,7 +107,7 @@ elif 	[$# -eq 2] || [$2="MIT"] then
                  mv "$2"/c"$2"/.sources
 		  
 		fi
-		elif 	[$# -eq 2] || [$2= "latex"] then 
+		if 	[$# -eq 2] || [$2= "latex"] then 
 		cd "$1"/
 		git init
 		cd ../
@@ -128,7 +122,7 @@ elif 	[$# -eq 2] || [$2="MIT"] then
                  mv "$2"/c"$2"/.sources
 		fi
 		
-             elif 	[$# -eq 2] || [$2= "beamer"] then 
+             if 	[$# -eq 2] || [$2= "beamer"] then 
 		cd "$2"/
 		
 		cd ../
@@ -146,10 +140,10 @@ elif 	[$# -eq 2] || [$2="MIT"] then
                  mv "$2"/c"$2"/.sources
 	fi
 	if [ $2 -ne "c" ]||[$2 -ne "cpp"|] || [$2 -ne "py"]||[$2 -ne "latex "]|| [$2 -ne "beamer"]||[$2 -eq "GPL"]
-                exit 1
+               then
                 echo "You must set project type or your project licence , please check the help : initdev –help""
-		
-	case4	if 	[$# -eq 3] && [$3 -eq "GPL"]&& [$2 -ne $3] && [$2 -ne "MIT"]  then
+		fi
+		if 	[$# -eq 3] && [$3 -eq "GPL"]&& [$2 -ne $3] && [$2 -ne "MIT"]  then
 	 cd "$3"/             
 		#redirection du fichier vers le repertoire parent LICENCES
 		cd ../
@@ -161,7 +155,7 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		 cp  home/"$USER"/.initdev/licences/GPL$3"
                  mv "$3"/GPL "$3"/.LICENCES
 		  
-	elif  [$2 -eq "c"]
+	 if  [$2 -eq "c"]
 	cd "$2"/
 		git init                   
 		cd ../
@@ -176,7 +170,8 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		  #copier le code minimal du langage demandé
 		  cp  home/"$USER"/.initdev/sources/main.c"$2"
                  mv "$2"/c"$2"/.sources
-		elif  [$2 -eq "cpp" -o "c++"]
+		 fi
+		if  [$2 -eq "cpp" -o "c++"]
 		
 		cd "$2"/
 		git init                   
@@ -197,7 +192,7 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		
                 fi
 		
-		elif  [$2 -eq "py" ]
+		if  [$2 -eq "py" ]
 		
 		cd "$2"/
 		git init                   
@@ -214,7 +209,7 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		  cp  home/"$USER"/.initdev/sources/main.py"$2"
                  mv "$2"/py"$2"/.sources
 		 fi
-		 elif  [$2 -eq "cpp" -o "c++"]
+		if  [$2 -eq "cpp" -o "c++"]
 		
 		cd "$2"/
 		git init                   
@@ -231,7 +226,7 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		  cp  home/"$USER"/.initdev/sources/main.cpp"$2"
                  mv "$2"/cpp"$2"/.sources
  fi
-  elif  [$2 -eq "latex"]
+ if  [$2 -eq "latex"]
 		
 		cd "$2"/
 		git init                   
@@ -248,7 +243,7 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		  cp  home/"$USER"/.initdev/sources/latexMin.tex"$2"
                  mv "$2"/latex"$2"/.sources
  fi
- elif  [$2 -eq "beamer"]
+if  [$2 -eq "beamer"]
 		
 		cd "$2"/
 		git init                   
@@ -268,12 +263,12 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		
 		
 		
-                fi
 		
-		if [ $2 -ne "c" ]||[$2 -ne "cpp"|] | [$2 -ne "py"] - [$2 -ne "latex "]-o [$2 -ne "beamer"][$2 -ne  "MIT "GPL"]
-                exit 1
+		if [ $2 -ne "c" ]||[$2 -ne "cpp"|] | [$2 -ne "py"] - [$2 -ne "latex "]-o [$2 -ne "beamer"][$2 -ne  "MIT "GPL"] then
+              
                 echo "You must set project type or your project licence , please check the help : initdev –help""
-	case3	if 	[$# -eq 3] && [$3 -eq "MIT"]&& [$2 -ne $3] && [$2 -ne "GPL"]  then
+		fi
+	else if 	[$# -eq 3] && [$3 -eq "MIT"]&& [$2 -ne $3] && [$2 -ne "GPL"]  then
 	 cd "$3"/             
 		#redirection du fichier vers le repertoire parent LICENCES
 		cd ../
@@ -285,7 +280,7 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		 cp  home/"$USER"/.initdev/licences/MIT"$3"
                  mv "$3"/c"$3"/.LICENCES
 		  
-	elif  [$2 -eq "c"]
+	if  [$2 -eq "c"]
 	cd "$2"/
 		git init                   
 		cd ../
@@ -300,7 +295,8 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		  #copier le code minimal du langage demandé
 		  cp  home/"$USER"/.initdev/sources/main.c"$2"
                  mv "$2"/c"$2"/.sources
-		elif  [$2 -eq "cpp" -o "c++"]
+		 fi
+		if  [$2 -eq "cpp" -o "c++"]
 		
 		cd "$2"/
 		git init                   
@@ -316,12 +312,10 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		  #copier le code minimal du langage demandé
 		  cp  home/"$USER"/.initdev/sources/main.cpp"$2"
                  mv "$2"/cpp"$2"/.sources
+		fi
 		
 		
-		
-                fi
-		
-		elif  [$2 -eq "py" ]
+           if  [$2 -eq "py" ]
 		
 		cd "$2"/
 		git init                   
@@ -338,7 +332,7 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		  cp  home/"$USER"/.initdev/sources/main.py"$2"
                  mv "$2"/py"$2"/.sources
 		 fi
-		 elif  [$2 -eq "cpp" -o "c++"]
+		if  [$2 -eq "cpp" -o "c++"]
 		
 		cd "$2"/
 		git init                   
@@ -355,7 +349,7 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		  cp  home/"$USER"/.initdev/sources/main.cpp"$2"
                  mv "$2"/cpp"$2"/.sources
  fi
-  elif  [$2 -eq "latex"]
+  if  [$2 -eq "latex"]
 		
 		cd "$2"/
 		git init                   
@@ -372,7 +366,7 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		  cp  home/"$USER"/.initdev/sources/latexMin.tex"$2"
                  mv "$2"/latex"$2"/.sources
  fi
- elif  [$2 -eq "beamer"]
+ if  [$2 -eq "beamer"]
 		
 		cd "$2"/
 		git init                   
@@ -387,21 +381,12 @@ elif 	[$# -eq 2] || [$2="MIT"] then
 		 mv "$2"/beamer"$2"/.gitignore
 		  #copier le code minimal du langage demandé
 		  cp  home/"$USER"/.initdev/sources/beamer.tex $2"
-                 mv "$2"/beamer"$2"/.sources
- fiif [ $2 -ne "c" ]||[$2 -ne "cpp"|] || [$2 -ne "py"]||[$2 -ne "latex "]|| [$2 -ne "beamer"]||[$2 -eq  "MIT "]
-   echo " ERROR: enterthe right arguments or check the help"}
-   exit1
-   exit0
+                mv "$2"/beamer"$2"/.sources
+ fi
+ if [ $2 -ne "c" ]||[$2 -ne "cpp"|] || [$2 -ne "py"]||[$2 -ne "latex "]|| [$2 -ne "beamer"]||[$2 -eq  "MIT "]
+   then echo " ERROR: enterthe right arguments or check the help"}
+   fi
+   fi
+   	
 		
-		
-                fi
-		
-		
-		
-		
-		
-                exit0 
-								
-            
-            
-    
+               
