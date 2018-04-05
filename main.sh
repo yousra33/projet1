@@ -32,88 +32,139 @@ then
                     
                     -MIT:MIT LICENCE 
 		    
-            AUTHOR: BADJI YOUSRA  email: yousrabaji33@gmail.com
+            AUTHOR: BADJI YOUSRA  email: yousrabaji33@gmail.com"
 	    
             fi
 	    
-            $pwd 
-            cd .initdev
-            read $1
-           if [ "$1" = "-GPL" ] then
-	        cd "$1"/             
+
+case 1
+if [ $# -eq 0 ]
+then     echo "Expected arguments, please check the help : initdev –help".
+ fi exit 1
+ case 2
+ 
+#creation de fichier sans extension
+elif  [$# -eq 1 ]] 
+           cd ..
+	 
+            mkdir  $1
+	   touch "$1"/main
+	   touch "$1"/LICENSE  
+           touch "$1"/makefile
+ #creation de fichier une seule extension soit type licence ou type de langage
+elif 	[$# -eq 2] || [$2="GPL" ] then
+	        cd "$2"/             
 		#redirection du fichier vers le repertoire parent LICENCES
 		cd ../
 		git init
-		touch "$1"/LICENSES
-                mkdir -p $1/{LICENCES
-		touch "$1"/makefile
-					 
-                if [ "$1" = "-c" ] then
-          	cd "$1"/
-	       git init
-	       cd ../
-	       #redirection du fichier vers le repertoire parent gitignores 
-		touch "$1"/gitifnores
-                mkdir -p $1/{gitignores}
-		touch "$1"/makefile
+		 mkdir -p $2/{LICENCES}
+		touch "$2"/LICENSES
+		touch "$2"/makefile
+		#copier le contenu de la licence MIT
+		 cp  home/"$USER"/.initdev/LICENCE/GPL"$2"/ 
+		  mv "$2"/c"$2"/.LICENCES
+
+elif 	[$# -eq 2] || [$2="MIT"] then				 
+                 cd "$2"/             
+		#redirection du fichier vers le repertoire parent LICENCES
+		cd ../
+		git init
+		 mkdir -p $2/{LICENCES}
+		touch "$2"/LICENSES
+		touch "$2"/makefile
+		
+		 cp  home/"$USER"/.initdev/licences/MIT"$2"
+                 mv "$2"/c"$2"/.LICENCES
+		  
 		fi
 		
-                 if [ "$1" = "-cpp" ] then
-		cd "$1"/
+elif 	[$# -eq 2] || [$2= "c" ] then 
+             
+		cd "$2"/
 		git init                   
 		cd ../
              #redirection du fichier vers le repertoire parent gitignores
-		touch "$1"/gitifnores
-                mkdir -p $1/{gitignores}
-		touch "$1"/makefile
-		fi
+		touch "$2"/gitifnores
+                mkdir -p $2/{gitignores}
+		touch "$2"/makefile
+		#Copier le fichier ".gitignore" approprié au langage du projet
 		
-                 if [ "$1" = "-py" ] then
-		cd "$1"/          
+		 cp  home/"$USER"/.initdev/gitignores/c "$1"/ 
+		 mv "$2"/c"$2"/.gitignore
+		 
+		  cp  home/"$USER"/.initdev/sources/main.c"$2"
+                 mv "$2"/c"$2"/.sources
+		
+		fi
+		elif 	[$# -eq 2] || [$2= "cpp" -o $2= "c++"] then 
+             
+		cd "$2"/
+		git init                   
+		cd ../
+             #redirection du fichier vers le repertoire parent gitignores
+		touch "$2"/gitifnores
+                mkdir -p $2/{gitignores}
+		touch "$2"/makefile
+		#Copier le fichier ".gitignore" approprié au langage du projet
+		
+		 cp  home/"$USER"/.initdev/gitignores/cpp "$2"/ 
+		  mv "$2"/cpp "$2"/.gitignore
+		   cp  home/"$USER"/.initdev/sources/main.cpp "$2"
+                 mv "$2"/c"$2"/.sources
+		 
+		elif 	[$# -eq 2] || [$2= "py"] then 
+		cd "$2"/          
 		git init
 		cd ../
 		#redirection du fichier vers le repertoire parent gitgnores
-		touch "$1"/gitifnores
-                mkdir -p $1/{gitignores}
+		touch "$2"/gitignores
+                mkdir -p $2/{gitignores}
 		touch "$1"/makefile
+		 cp  home/"$USER"/.initdev/gitignores/py"$2"/ 
+		  mv "$2"/py"$2"/.gitignore
+		  cp  home/"$USER"/.initdev/sources/main.py"$2"
+                 mv "$2"/c"$2"/.sources
+		  
 		fi
-		
-                 if [ "$1" = "latex" ] then
+		elif 	[$# -eq 2] || [$2= "latex"] then 
 		cd "$1"/
 		git init
 		cd ../
 		#redirection du fichier vers le repertoire parent gitgnores
-		touch "$1"/gitifnores
-                mkdir -p $1/{gitignores}
-		touch "$1"/makefile
+		touch "$2"/gitignores
+                mkdir -p $2/{gitignores}
+		touch "$2"/makefile
+		 cp  home/"$USER"/.initdev/gitignores/latex "$2"/ 
+		  mv "$2"/latex"$2"/.gitignore
+		  cp  home/"$USER"/.initdev/sources/latexMin.tex"$2"
+                 mv "$2"/c"$2"/.sources
 		fi
 		
-                 if [ "$1" = "BEAMER" ] then
-		cd "$1"/
-		ion du fichier vers le repertoire parent gitgnores
+             elif 	[$# -eq 2] || [$2= "beamer"] then 
+		cd "$2"/
+		
 		cd ../
 		git init
-		#redirect
-		touch "$1"/gitignores
-                mkdir -p $1/{gitignores}
+		#redirection du fichier vers le repertoire parent gitgnores
+		touch "$2"/gitignores
+                mkdir -p $2/{gitignores}
 		touch "$1"/makefile
-		fi
-           
-            if [ "$1" = "-MIT" ] then
-		cd "$1"/
-		git init
-	        cd ../
-		#redirection du fichier vers le repertoire parent LICENCES
-		touch "$1"/LICENSES
-                mkdir -p $1/{LICENCES}
-		touch "$1"/makefile
-                fi
+		#Copier le fichier ".gitignore" approprié au langage du projet
 		
-                touch main.sh
-                touch install.sh
+		 cp  home/"$USER"/.initdev/gitignores/beamer" $1"/ 
+		  mv "$2"/beamer"$2"/.gitignore
+		  #copier le code minimal du langage demandé
+		   cp  home/"$USER"/.initle code minimal du langage demandédev/sources/beamer.tex"$2"
+                 mv "$2"/c"$2"/.sources
+	fi
+	if [ $2 -ne "c" ]||[$2 -ne "cpp"|] | [$2 -ne "py"] - [$2 -ne "latex "]-o [$2 -ne "beamer"][$2 -ne  "MIT "GPL"]
                 exit 1
-                echo "You must set project type, please check the help : initdev –help""
+                echo "You must set project type or your project licence , please check the help : initdev –help""
                 fi
+		
+		
+		
+		
                 exit0 
 								
             
