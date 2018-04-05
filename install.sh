@@ -17,9 +17,17 @@ else
 fi
 #configuration de linux	
    			PATH="$PATH:/home/"$utilisateur"/.initdev/"
-			export PATH 
-		
-		
+			
+		   source ~/.bashrc
+                   echo $PATH
+		   export PATH 
+                  
+		exit 1
+		 echo "application non installée"
+
+     echo "application installée"
+
+	exit 0	
 
 	echo "application installée"
 fi
